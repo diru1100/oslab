@@ -1,77 +1,68 @@
 #include<stdio.h>
-#include<stdbool.h>
-//implementing FIFO algorithm
+int main()
+{
+int count=0;
+int flag=0;
+int m=0;
+int i=0;
+int n=0;
+int j=0;
+int k=0;
+printf("enter the no of process and pages \n");
+scanf("%d",&n);
+scanf("%d",&m);
+int res[m];
+int hit=0;
 
-
-
-bool isThere(int arr[],int size,int k){
-	for(int i=0;i<size;i++){
-		if(k==arr[i]){
-			return true;
-		}
-	}
-	return false;
-}
-
-
-
-
-int main(){
-
-	int n;
-	int superarr[3][20]={0};
-	scanf("%d",&n);
-	int framesize=3;
-	//scanf("%d",&framesize);
-	int count=0;
-
-	int arr[3]={0};
-	int i;
-	for(i=0;i<n;i++){
-		
-		int ele;
-		scanf("%d",&ele);
-		if(!isThere(arr,framesize,ele) ){
-			if(i<framesize){
-				arr[i]=ele;
-				
-				count++;
-
-			}else{
-				for(int j=0;j<framesize-1;j++){				
-					arr[j]=arr[j+1];
-				}
-				arr[framesize-1]=ele;
-				count++;
-		
-
-			}
-			
-		}
-		for(int k=0;k<framesize;k++){
-			superarr[k][i]=arr[k];
-		}
-
-
-	}
-	if(i==n){
-
-			for(int k=0;k<3;k++){
-				for(int j=0;j<i;j++){
-					if(superarr[k][j]!=0){
-						printf("%d \t ",superarr[k][j]);
-					}else{
-						printf("  ");
-						printf("\t" );
-					}
-					
-
-				}
-				printf("\n");
-			}
-			printf("\n The number of page fault is: %d \n",count);
-		}
+for(i=0;i<m;i++)
+{
 	
+	  res[i]=-1;	
 
-	return 0;
+}
+printf("enter the process");
+ for(i=0;i<n;i++)
+ {		
+	scanf("%d",&k);
+	printf("%d",k);
+	if(count==m)
+	{
+		count=0;
+	}
+	for(j=0;j<m;j++)
+	{
+	  if(res[j]==k)
+		{
+		  break;
+		}
+	  if(res[j]==-1)
+		{
+		  res[j]=k;
+		  hit++;
+		  break;
+		}
+	  
+	}
+	if(j==m)
+	{       
+                res[count]=k;
+		count++;
+		hit++;
+	}
+	printf("      ");
+	for(j=0;j<m;j++)
+	{
+		if(res[j]!=-1)
+		{
+			printf("%d",res[j]);
+		}
+		else
+		break;
+	}
+	printf("\n");
+ }
+	
+	printf("\n no of page faults is  %d",hit);
+
+
 }
